@@ -57,7 +57,7 @@ namespace FARSIMAN
 
             // Font Awesome icons
             bundles.Add(new StyleBundle("~/Content/font-Style").Include(
-                      "~/fonts/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform()));
+                      "~/fonts/font-awesome/css/all.min.css", new CssRewriteUrlTransform()));
 
             //Date picker
             bundles.Add(new StyleBundle("~/Content/picker").Include(
