@@ -8,19 +8,33 @@ namespace FARSIMAN
 
         public static void RegisterBundles(BundleCollection bundles)
         {
+            // CSS style (bootstrap/inspinia)
+            bundles.Add(new StyleBundle("~/Content/Style").Include(
+                      "~/Content/bootstrap.old.min.css",
+                      "~/Content/animate.css",
+                      "~/Content/style.css"));
 
+            bundles.Add(new StyleBundle("~/Content/DataTabla")
+                .Include("~/Content/DataTables/css/dataTables.bootstrap.css"));
+            // Font Awesome icons
+            bundles.Add(new StyleBundle("~/Content/font-Style").Include(
+                      "~/fonts/font-awesome/css/all.min.css", new CssRewriteUrlTransform()));
 
+            //Date picker
+            bundles.Add(new StyleBundle("~/Content/picker").Include(
+                        "~/Content/themes/base/jquery-ui.min.css"
+            ));
 
             // Vendor scripts
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-3.1.1.min.js"));
+                        "~/Scripts/jquery-3.7.1.min.js"));
 
             // jQuery Validation
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
             "~/Scripts/jquery.validate.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.min.js",
+                      "~/Scripts/bootstrap.old.min.js",
                       "~/Scripts/dataTables/jquery.dataTables.min.js",
                       "~/Scripts/dataTables/dataTables.bootstrap.min.js"));
 
@@ -39,14 +53,7 @@ namespace FARSIMAN
             bundles.Add(new ScriptBundle("~/plugins/pace").Include(
                       "~/Scripts/plugins/pace/pace.min.js"));
 
-            // CSS style (bootstrap/inspinia)
-            bundles.Add(new StyleBundle("~/Content/Style").Include(
-                      "~/Content/bootstrap.min.css",
-                      "~/Content/animate.css",
-                      "~/Content/style.css"));
-
-            bundles.Add(new StyleBundle("~/Content/DataTabla")
-                .Include("~/Content/DataTables/css/dataTables.bootstrap.css"));
+           
 
             bundles.Add(new ScriptBundle("~/Scripts/DataTabla")
                       .Include(
@@ -54,16 +61,7 @@ namespace FARSIMAN
                             "~/Scripts/DataTables/dataTables.responsive.min.js",
                             "~/Scripts/DataTables/dataTables.bootstrap.min.js"
                 ));
-
-            // Font Awesome icons
-            bundles.Add(new StyleBundle("~/Content/font-Style").Include(
-                      "~/fonts/font-awesome/css/all.min.css", new CssRewriteUrlTransform()));
-
-            //Date picker
-            bundles.Add(new StyleBundle("~/Content/picker").Include(
-                        "~/Content/themes/base/jquery-ui.min.css"
-            ));
-
+            
             bundles.Add(new ScriptBundle("~/Scripts/picker").Include(
                 "~/Scripts/jquery-ui-1.13.2.min.js"
                 ));

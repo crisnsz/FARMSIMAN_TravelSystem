@@ -363,8 +363,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.old.css" />
+    <Content Include="Content\bootstrap.old.min.css" />
     <Content Include="Content\css\master.css" />
     <Content Include="Content\css\tables.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
@@ -2668,9 +2668,8 @@
     <Content Include="Scripts\app\Travel\CreateTravel.js" />
     <Content Include="Scripts\app\Travel\EditTravel.js" />
     <Content Include="Scripts\app\Travel\IndexTravel.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\bootstrap.old.js" />
+    <Content Include="Scripts\bootstrap.old.min.js" />
     <Content Include="fonts\font-awesome.old\fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\font-awesome.old\fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\font-awesome.old\fonts\fontawesome-webfont.woff" />
@@ -2702,7 +2701,6 @@
     <Content Include="fonts\font-awesome.old\scss\_rotated-flipped.scss" />
     <Content Include="fonts\font-awesome.old\scss\_stacked.scss" />
     <Content Include="fonts\font-awesome.old\scss\_variables.scss" />
-    <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
@@ -2767,6 +2765,8 @@
     <Content Include="fonts\font-awesome\webfonts\fa-solid-900.woff2" />
     <Content Include="fonts\font-awesome\webfonts\fa-v4compatibility.ttf" />
     <Content Include="fonts\font-awesome\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="Content\bootstrap.old.css.map" />
+    <Content Include="Content\bootstrap.old.min.css.map" />
     <None Include="Properties\PublishProfiles\HostDemo.pubxml" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
