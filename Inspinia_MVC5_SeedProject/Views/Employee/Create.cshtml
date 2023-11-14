@@ -43,24 +43,24 @@
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true)
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.employee_Name, new { @class = "control-label col-md-2" })
+                            <div class="mb-3">
+                                @Html.LabelFor(model => model.employee_Name, new { @class = "form-label col-md-2", @for = "employee_Name" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.employee_Name)
+                                    @Html.EditorFor(model => model.employee_Name, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.employee_Name)
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.employee_Direction, new { @class = "control-label col-md-2" })
+                            <div class="mb-3">
+                                @Html.LabelFor(model => model.employee_Direction, new { @class = "form-label col-md-2", @for = "employee_Direction" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.employee_Direction)
+                                    @Html.EditorFor(model => model.employee_Direction, new { @class = "form-control"})
                                     @Html.ValidationMessageFor(model => model.employee_Direction)
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="mb-3">
                                 @*@Html.LabelFor(tbPositions => tbPositions.tbEmployeesPositions, new { @class = "control-label col-md-2" })*@
-                                <label class="control-label col-md-2">Puesto o Cargo</label>
+                                <label class="form-label col-md-2" for="position_ID" >Puesto o Cargo</label>
                                 <div class="col-md-10">
                                     @Html.DropDownList("position_ID", (SelectList)ViewBag.Positions, new { @class = "text-box single-line", @required = string.Empty })
                                 </div>
@@ -112,7 +112,7 @@
                                                                         @Html.DisplayFor(modelItem => item.subsidiary_Direction)
                                                                     </td>
                                                                     <td>
-                                                                        <input name="id02" type="button" id="AddSubsidiary" class="btn btn-primary btn-xs" value="Agregar &#9658" />
+                                                                        <input name="id02" type="button" id="AddSubsidiary" class="btn btn-primary btn-sm" value="Agregar &#9658" />
                                                                     </td>
 
                                                                 </tr>

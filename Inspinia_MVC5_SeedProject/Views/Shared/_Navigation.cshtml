@@ -10,22 +10,13 @@
     <div class="sidebar-collapse">
         <div class="logo-element">
         </div>
-        <ul class="nav" id="side-menu">
-            <li class="nav-header">
-                <div class="dropdown profile-element">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="clear">
-                            <span class="block m-t-xs">
-                            </span>
-                        </span>
-                    </a>
-                </div>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto" id="side-menu">
+            <li class="@Html.IsSelected(action: "Index") nav-item">
+                <a class="nav-link" href="@Url.Action("Index", "Employee")" aria-current="page"><i class="nav-label fa fa-users fa-fw"></i>Empleado<span class="nav-label"></span> </a>
             </li>
-            <li class="@Html.IsSelected(action: "Ind ex")">
-                <a href="@Url.Action("Index", "Employee")"><i class="nav-label fa fa-users fa-fw"></i>Empleado<span class="nav-label"></span> </a>
-            </li>
-            <li class="@Html.IsSelected(action: "Index")">
-                <a href="@Url.Action("Index", "Travel")"><i class="nav-label fa fa-bus fa-fw"></i>Viajes<span class="nav-label"></span> </a>
+            <li class="@Html.IsSelected(action: "Index") nav-item">
+                <a class="nav-link" href="@Url.Action("Index", "Travel")" aria-current="page"><i class="nav-label fa fa-bus fa-fw"></i>Viajes<span class="nav-label"></span> </a>
         </ul>
     </div>
 </nav>

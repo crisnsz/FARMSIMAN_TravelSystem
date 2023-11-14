@@ -32,7 +32,7 @@ namespace FARSIMAN
                             "~/Scripts/jquery.validate.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                            "~/Scripts/bootstrap.old.min.js"));
+                            "~/Scripts/bootstrap.bundle.min.js"));
 
             // Inspinia script
             bundles.Add(new ScriptBundle("~/bundles/inspinia").Include(
