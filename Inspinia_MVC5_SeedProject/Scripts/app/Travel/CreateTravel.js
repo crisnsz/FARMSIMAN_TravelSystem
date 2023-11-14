@@ -24,9 +24,9 @@ const subtract = "subtract";
 let arrayEmployseesAdded = [];
 
 document.addEventListener("DOMContentLoaded", function () {
-
+    
     // Inicializar las tablas con DataTables
-    tableEmployessAvalaible = $('#EmployessAvalaible').DataTable({
+    tableEmployessAvalaible = new DataTable('#EmployessAvalaible', {
         "lengthChange": false,
         "pageLength": 5,// Set the number of rows per page
         "order": [[0, 'asc']],
@@ -50,8 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     });
-
-    tableEmployessAdded = $('#EmployessAdded').DataTable({
+    
+    tableEmployessAdded = new DataTable('#EmployessAdded', {
         "lengthChange": false,
         "pageLength": 5,// Set the number of rows per page
         "order": [[0, 'asc']],

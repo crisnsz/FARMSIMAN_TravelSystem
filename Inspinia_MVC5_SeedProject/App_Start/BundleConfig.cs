@@ -15,7 +15,7 @@ namespace FARSIMAN
                       "~/Content/style.css"));
 
             bundles.Add(new StyleBundle("~/Content/DataTabla")
-                .Include("~/Content/DataTables/css/dataTables.bootstrap.css"));
+                .Include("~/Content/DataTables/datatables.min.css"));
             // Font Awesome icons
             bundles.Add(new StyleBundle("~/Content/font-Style").Include(
                       "~/fonts/font-awesome/css/all.min.css", new CssRewriteUrlTransform()));
@@ -35,8 +35,7 @@ namespace FARSIMAN
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.old.min.js",
-                      "~/Scripts/dataTables/jquery.dataTables.min.js",
-                      "~/Scripts/dataTables/dataTables.bootstrap.min.js"));
+                      "~/Scripts/datatables.min.js"));
 
             // Inspinia script
             bundles.Add(new ScriptBundle("~/bundles/inspinia").Include(

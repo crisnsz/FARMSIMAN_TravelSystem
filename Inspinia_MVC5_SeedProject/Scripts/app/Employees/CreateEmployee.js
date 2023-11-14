@@ -4,9 +4,7 @@ let tableAdded;
 
 
 document.addEventListener("DOMContentLoaded", function () {
-
-    // Inicializar las tablas con DataTables
-    tableNoAdded = $('#NoAdded').DataTable({
+    tableNoAdded = new DataTable('#NoAdded', {
         "searching": false,
         "lengthChange": false,
 
@@ -28,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    tableAdded = $('#Added').DataTable({
+
+    tableAdded = new DataTable('#Added', {
         "searching": false,
         "lengthChange": false,
 
@@ -49,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     });
+
 });
 
 
