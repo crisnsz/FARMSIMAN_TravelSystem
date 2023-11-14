@@ -1,5 +1,5 @@
-﻿using ERP_GMEDINA.Controllers;
-using ERP_GMEDINA.Models;
+﻿using FARSIMAN.Controllers;
+using FARSIMAN.Models;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
 using Microsoft.Reporting.WebForms;
 using System;
@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ERP_GMEDINA.Views.Travel.Reports
+namespace FARSIMAN.Views.Travel.Reports
 {
     public partial class ReportTravel : System.Web.UI.Page
     {

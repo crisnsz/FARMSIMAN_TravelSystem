@@ -1,4 +1,4 @@
-﻿using ERP_GMEDINA.Models;
+﻿using FARSIMAN.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ERP_GMEDINA.Attribute
+namespace FARSIMAN.Attribute
 {
     public class SessionManagerAttribute : ActionFilterAttribute
     {

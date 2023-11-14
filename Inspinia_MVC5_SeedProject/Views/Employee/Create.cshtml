@@ -1,15 +1,15 @@
 ﻿@using Microsoft.AspNet.Identity
-@using ERP_GMEDINA.Controllers
+@using FARSIMAN.Controllers
 
-@model ERP_GMEDINA.Models.tbEmployee
+@model FARSIMAN.Models.tbEmployee
 
 @{
     ViewBag.Title = "Registrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     EmployeeController employeeController = new EmployeeController();
-    List<ERP_GMEDINA.Models.tbSubsidiary> tbSubsidiaries = employeeController.GetSubsidiaries();
-    List<ERP_GMEDINA.Models.tbPosition> tbPositions = employeeController.GetPositions();
+    List<FARSIMAN.Models.tbSubsidiary> tbSubsidiaries = employeeController.GetSubsidiaries();
+    List<FARSIMAN.Models.tbPosition> tbPositions = employeeController.GetPositions();
 
 }
 

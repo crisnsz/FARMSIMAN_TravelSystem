@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReportTravel.aspx.cs" Inherits="ERP_GMEDINA.Views.Travel.Reports.ReportTravel" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReportTravel.aspx.cs" Inherits="FARSIMAN.Views.Travel.Reports.ReportTravel" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 

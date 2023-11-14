@@ -1,5 +1,5 @@
-﻿@model ERP_GMEDINA.Models.tbEmployee
-@using ERP_GMEDINA.Controllers
+﻿@model FARSIMAN.Models.tbEmployee
+@using FARSIMAN.Controllers
 
 @{
     ViewBag.Title = "Edit";
@@ -8,9 +8,9 @@
     EmployeeController employeeController = new EmployeeController();
 
 
-    //List<ERP_GMEDINA.Models.tbSubsidiary> tbSubsidiaries = employeeController.GetEmployeesSubsidiary();
+    //List<FARSIMAN.Models.tbSubsidiary> tbSubsidiaries = employeeController.GetEmployeesSubsidiary();
 
-    List<ERP_GMEDINA.Models.tbPosition> tbPositions = employeeController.GetPositions();
+    List<FARSIMAN.Models.tbPosition> tbPositions = employeeController.GetPositions();
 
 }
 
@@ -101,7 +101,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach (var item in (List<ERP_GMEDINA.Models.tbSubsidiary>)ViewBag.tbSubsidiary)
+                                                            @foreach (var item in (List<FARSIMAN.Models.tbSubsidiary>)ViewBag.tbSubsidiary)
                                                             {
                                                                 <tr data-id="@item.subsidiary_ID">
                                                                     <td hidden>
@@ -136,7 +136,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach (var item in (List<ERP_GMEDINA.Models.tbEmployeesSubsidiary>)ViewBag.tbEmployeesSubsidiaries)
+                                                            @foreach (var item in (List<FARSIMAN.Models.tbEmployeesSubsidiary>)ViewBag.tbEmployeesSubsidiaries)
                                                             {
                                                                 <tr data-id="@item.employeeSubsidiary_ID">
                                                                     <td hidden>

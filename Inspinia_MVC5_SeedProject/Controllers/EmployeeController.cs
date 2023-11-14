@@ -1,5 +1,5 @@
-﻿using ERP_GMEDINA.Attribute;
-using ERP_GMEDINA.Models;
+﻿using FARSIMAN.Attribute;
+using FARSIMAN.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +11,7 @@ using System.Web.Mvc;
 using System.Web;
 
 
-namespace ERP_GMEDINA.Controllers
+namespace FARSIMAN.Controllers
 {
     public class EmployeeController : Controller
     {

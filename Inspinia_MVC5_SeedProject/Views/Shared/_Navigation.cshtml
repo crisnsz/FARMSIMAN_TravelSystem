@@ -1,8 +1,6 @@
-﻿@using ERP_GMEDINA.Models
+﻿@using FARSIMAN.Models
 @{
     Helpers Login = new Helpers();
-    int Sesiones = 0;
-
 
     List<tbUser> User = Login.getUserInformation();
 
@@ -23,14 +21,11 @@
                     </a>
                 </div>
             </li>
-            <li class="@Html.IsSelected(action: "Index")">
+            <li class="@Html.IsSelected(action: "Ind ex")">
                 <a href="@Url.Action("Index", "Employee")"><i class="nav-label fa fa-users fa-fw"></i>Empleado<span class="nav-label"></span> </a>
             </li>
             <li class="@Html.IsSelected(action: "Index")">
                 <a href="@Url.Action("Index", "Travel")"><i class="nav-label fa fa-bus fa-fw"></i>Viajes<span class="nav-label"></span> </a>
-            </li>
-            <li class="@Html.IsSelected(action: "Index")">
-                <a href="@Url.Action("Index", "TravelHistory")"><i class="nav-label fa fa-bus fa-fw"></i>Viajes History<span class="nav-label"></span> </a>
             </li>
         </ul>
     </div>

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ERP_GMEDINA")]
+[assembly: AssemblyTitle("FARSIMAN")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ERP_GMEDINA")]
+[assembly: AssemblyProduct("FARSIMAN")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -33,8 +33,8 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: InternalsVisibleTo("ERP_GMEDINA.Tests")]
-[assembly: InternalsVisibleTo("ERP_GMEDINA.Explorables")]
-[assembly: InternalsVisibleTo("ERP_GMEDINA.Tests1")]
-[assembly: InternalsVisibleTo("ERP_GMEDINA.Tests2")]
+[assembly: InternalsVisibleTo("FARSIMAN.Tests")]
+[assembly: InternalsVisibleTo("FARSIMAN.Explorables")]
+[assembly: InternalsVisibleTo("FARSIMAN.Tests1")]
+[assembly: InternalsVisibleTo("FARSIMAN.Tests2")]
 

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ERP_GMEDINA.Models
+namespace FARSIMAN.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

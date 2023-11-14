@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ERP_GMEDINA.Properties {
+namespace FARSIMAN.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -29,9 +29,9 @@ namespace ERP_GMEDINA.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:academiaprogramadores.database.windows.net,1433;Initial Catalog=E" +
             "RP_GMEDINA;Persist Security Info=True;User ID=AHMsps;Password=Academy2018;Multip" +
             "leActiveResultSets=True;Application Name=EntityFramework")]
-        public string ERP_GMEDINAConnectionString {
+        public string FARSIMANConnectionString {
             get {
-                return ((string)(this["ERP_GMEDINAConnectionString"]));
+                return ((string)(this["FARSIMANConnectionString"]));
             }
         }
     }

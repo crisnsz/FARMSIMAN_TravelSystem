@@ -1,4 +1,4 @@
-﻿@model ERP_GMEDINA.Models.tbTravel
+﻿@model FARSIMAN.Models.tbTravel
 
 @{
     ViewBag.Title = "Edit";
@@ -134,7 +134,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach (var item in (List<ERP_GMEDINA.Models.tbEmployeesSubsidiary>)ViewBag.EmployeesAvaliable)
+                                                            @foreach (var item in (List<FARSIMAN.Models.tbEmployeesSubsidiary>)ViewBag.EmployeesAvaliable)
                                                             {
                                                                 <tr data-id="@item.employee_ID">
                                                                     <td hidden>
@@ -180,7 +180,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach (var item in (List<ERP_GMEDINA.Models.tbTravelDetail>)ViewBag.EmployeesAdded)
+                                                            @foreach (var item in (List<FARSIMAN.Models.tbTravelDetail>)ViewBag.EmployeesAdded)
                                                             {
                                                                 <tr data-id="@item.travel_Detail_ID">
                                                                     <td hidden>

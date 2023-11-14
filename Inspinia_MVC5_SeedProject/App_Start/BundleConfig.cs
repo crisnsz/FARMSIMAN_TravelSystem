@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace ERP_GMEDINA
+namespace FARSIMAN
 {
     public static class BundleConfig
     {

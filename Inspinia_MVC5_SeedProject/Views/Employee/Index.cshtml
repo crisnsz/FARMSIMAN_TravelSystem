@@ -1,10 +1,10 @@
-﻿@model IEnumerable<ERP_GMEDINA.Models.tbEmployee>
+﻿@model IEnumerable<FARSIMAN.Models.tbEmployee>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    ERP_GMEDINA.Models.Helpers Login = new ERP_GMEDINA.Models.Helpers();
+    FARSIMAN.Models.Helpers Login = new FARSIMAN.Models.Helpers();
 
     var User = Login.getUserInformation();
 

@@ -3,7 +3,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace ERP_GMEDINA
+namespace FARSIMAN
 {
     public partial class Startup
     {

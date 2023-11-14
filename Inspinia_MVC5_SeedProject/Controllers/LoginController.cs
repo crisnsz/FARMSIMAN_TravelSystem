@@ -5,11 +5,11 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using ERP_GMEDINA.Models;
+using FARSIMAN.Models;
 using Microsoft.Owin.Security;
 
 
-namespace ERP_GMEDINA.Controllers
+namespace FARSIMAN.Controllers
 {
     public class LoginController : Controller
     {

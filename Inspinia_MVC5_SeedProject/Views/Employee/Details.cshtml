@@ -1,4 +1,4 @@
-﻿@model ERP_GMEDINA.Models.tbEmployee
+﻿@model FARSIMAN.Models.tbEmployee
 
 @{
     ViewBag.Title = "Details";
@@ -89,7 +89,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach (var item in (List<ERP_GMEDINA.Models.tbEmployeesSubsidiary>)ViewBag.tbEmployeesSubsidiaries)
+                                                        @foreach (var item in (List<FARSIMAN.Models.tbEmployeesSubsidiary>)ViewBag.tbEmployeesSubsidiaries)
                                                         {
                                                             <tr data-id="@item.subsidiary_ID">
                                                                 <td hidden>

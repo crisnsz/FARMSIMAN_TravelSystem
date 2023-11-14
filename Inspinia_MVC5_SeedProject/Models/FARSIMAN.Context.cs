@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ERP_GMEDINA.Models
+namespace FARSIMAN.Models
 {
     using System;
     using System.Data.Entity;
