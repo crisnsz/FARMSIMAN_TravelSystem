@@ -1,0 +1,236 @@
+﻿@model ERP_GMEDINA.Models.tbTravel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Modificar Viaje</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Edit tbTravel</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm("Edit", "Travel", FormMethod.Post, new { name = "Miform", enctype = "multipart/form-data", onsubmit = "return validate_Form();" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.travel_ID)
+                            @Html.HiddenFor(model => model.employee_ID)
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.transporter_ID, "transporter_ID", new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.DropDownList("transporter_ID", null, htmlAttributes: new { @class = "form-control text-box single-line", @required = string.Empty })
+                                    @Html.ValidationMessageFor(model => model.transporter_ID)
+                                </div>
+
+                                <label class="control-label col-md-1">Tarifa</label>
+                                <div class="col-md-4">
+                                    <input type="number" id="transporter_fee" name="transporter_fee" value="@ViewBag.transporter_Fee" class="form-control text-box single-line" disabled readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.subsidiary_ID, "subsidiary_ID", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @*@Html.DropDownList("subsidiary_ID", String.Empty)*@
+                                    @Html.DropDownList("subsidiary_ID", null, htmlAttributes: new { @class = "form-control text-box single-line", @required = string.Empty })
+
+                                    @Html.ValidationMessageFor(model => model.subsidiary_ID)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Direccion de la Subsidiaria</label>
+
+                                <div class="col-md-10">
+                                    <input type="text" id="subsidiary_Address" name="subsidiary_Address" value="@ViewBag.subsidiaryAddress" class="form-control text-box single-line" readonly disabled>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.employee_ID, "employee_ID", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBox("registered_By", (String)ViewBag.employee_Name, htmlAttributes: new { @class = "form-control", @autocomplete = "off", @readonly = "readonly", @disabled = "disabled" })
+                                    @Html.ValidationMessageFor(model => model.employee_ID)
+                                </div>
+                            </div>
+
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.distance_Kilometers, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.distance_Kilometers, new { @class = "form-control", @autocomplete = "off", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.distance_Kilometers)
+                                    </div>
+
+                                    @Html.LabelFor(model => model.total_travel_Cost, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.total_travel_Cost, new { @class = "form-control", @autocomplete = "off", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.total_travel_Cost)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.departure_Date_and_Time, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.departure_Date_and_Time, new { htmlAttributes = new { @type = "datetime-local" } })
+                                    @Html.ValidationMessageFor(model => model.departure_Date_and_Time)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+
+                                        <div class="ibox-content" id="Crear">
+
+                                            <div id="EmployessAddedValidation" class="validation-error">
+                                                <p style="color:red">
+                                                    <span class="field-validation-valid" data-valmsg-for="EmployessAvalaible" data-valmsg-replace="true"></span>
+                                                </p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="col-md-10" style="text-align:center">Sucursales Disponibles</label>
+                                                    <table id="EmployessAvalaible" class="table table table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th hidden style="background-color:#1ab394;color:white">
+                                                                    ID
+                                                                </th>
+                                                                <th id="NoAssign" style="background-color:#1ab394;color:white">
+                                                                    Nombre
+                                                                </th>
+                                                                <th style="background-color: #1ab394; color: white">
+                                                                    Direccion
+                                                                </th>
+                                                                <th style="background-color: #1ab394; color: white">
+                                                                    Distancia
+                                                                </th>
+                                                                <th style="background-color:#1ab394;color:white"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in (List<ERP_GMEDINA.Models.tbEmployeesSubsidiary>)ViewBag.EmployeesAvaliable)
+                                                            {
+                                                                <tr data-id="@item.employee_ID">
+                                                                    <td hidden>
+                                                                        @Html.DisplayFor(modelItem => item.employee_ID)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.tbEmployee.employee_Name)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.tbEmployee.employee_Direction)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.employeeSubsidiary_DistanceKM)
+                                                                    </td>
+                                                                    <td>
+                                                                        <input name="id02" type="button" id="btnAddEmployee" class="btn btn-primary btn-xs" value="Agregar &#9658" />
+                                                                    </td>
+
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="col-md-10" style="text-align:center">Sucursales Asignadas</label>
+                                                    <table id="EmployessAdded" class="table table table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th hidden style="background-color:#1ab394;color:white">
+                                                                    ID
+                                                                </th>
+                                                                <th id="NoAssign" style="background-color:#1ab394;color:white">
+                                                                    Nombre
+                                                                </th>
+                                                                <th style="background-color: #1ab394; color: white">
+                                                                    Direccion
+                                                                </th>
+                                                                <th style="background-color: #1ab394; color: white">
+                                                                    Distancia
+                                                                </th>
+                                                                <th style="background-color:#1ab394;color:white"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in (List<ERP_GMEDINA.Models.tbTravelDetail>)ViewBag.EmployeesAdded)
+                                                            {
+                                                                <tr data-id="@item.travel_Detail_ID">
+                                                                    <td hidden>
+                                                                        @Html.DisplayFor(modelItem => item.employee_ID)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.tbEmployee.employee_Name)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.tbEmployee.employee_Direction)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.distance_Kilometers)
+                                                                    </td>
+                                                                    <td>
+                                                                        <input name="id02" type="button" id="btnDelEmployee" class="btn btn-primary btn-xs" value="&#9668; Quitar &nbsp;&nbsp;" />
+                                                                    </td>
+                                                                </tr>
+                                                            }
+
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-horizontal">
+                            <fieldset class="box-border">
+                                <div class="col-md-offset-5 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </fieldset>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="~/Scripts/app/Travel/EditTravel.js"></script>
+
+}

@@ -1,0 +1,160 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbTravel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Listado de Viajes</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Viajes</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Viajes</h5>
+                    <div class="ibox-tools">
+                        <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalGenReporte" value="Generar Reporte" />
+                        @Html.ActionLink("Registrar Viaje", "Create", null, new { @class = "btn btn-primary " })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table id="DataTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.departure_Date_and_Time)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.distance_Kilometers)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.total_travel_Cost)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbEmployee.employee_Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbSubsidiary.subsidiary_Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbTransporter.transporter_Name)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model.Where(travel => travel.employee_ID == ViewBag.employee_ID))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.departure_Date_and_Time)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.distance_Kilometers)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.total_travel_Cost)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbEmployee.employee_Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbSubsidiary.subsidiary_Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbTransporter.transporter_Name)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.travel_ID }, new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.travel_ID }, new { @class = "btn btn-info btn-sm" })
+                                        @Html.ActionLink("Eliminar", "Delete", new { id = item.travel_ID }, new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="modal fade" id="ModalGenReporte" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Reporte de Viajes por Transportista</h4>
+            </div>
+            <div id="GenerarReporte" class="modal-body">
+                @Html.Partial("_ReportTravel", new ERP_GMEDINA.Models.tbTravel())
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .full-width-paragraph {
+        width: 100%;
+    }
+
+    .modal-lg {
+        max-width: 90%; /* Adjust the width percentage as needed */
+    }
+</style>
+
+@section scripts{
+    <script src="~/Scripts/app/DataTable.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script src="~/Scripts/app/Travel/IndexTravel.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#DataTable').DataTable({
+                "searching": true,
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                    },
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sEmptyTable": "No hay registros",
+                    "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                    "sSearch": "Buscar",
+                    "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+                    "sInfo": "Mostrando _START_ a _END_ Entradas"
+                },
+
+            });
+
+        });
+    </script>
+}
+
+

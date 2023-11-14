@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d6d5227fd99a400581b893a431006bd1" Name="Diagram1">
+        <EntityTypeShape EntityType="FARSIMANModel.tbEmployee" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="FARSIMANModel.tbEmployeesSubsidiary" Width="1.5" PointX="8.25" PointY="5.125" />
+        <EntityTypeShape EntityType="FARSIMANModel.tbPosition" Width="1.5" PointX="0.75" PointY="8.25" />
+        <EntityTypeShape EntityType="FARSIMANModel.tbSubsidiary" Width="1.5" PointX="6" PointY="4.25" />
+        <EntityTypeShape EntityType="FARSIMANModel.tbTransporter" Width="1.5" PointX="3" PointY="12.25" />
+        <EntityTypeShape EntityType="FARSIMANModel.tbTravelDetail" Width="1.5" PointX="7.5" PointY="8" />
+        <EntityTypeShape EntityType="FARSIMANModel.tbTravel" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="FARSIMANModel.tbAccess" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="FARSIMANModel.tbObject" Width="1.5" PointX="0.75" PointY="4.25" />
+        <EntityTypeShape EntityType="FARSIMANModel.tbUser" Width="1.5" PointX="5.25" PointY="14.875" />
+        <AssociationConnector Association="FARSIMANModel.FK_Gral_tbEmployees_Sec_tbUsers_employee_ID" />
+        <AssociationConnector Association="FARSIMANModel.FK_Gral_tbEmployees_tbPositions_position_ID" />
+        <AssociationConnector Association="FARSIMANModel.FK_Gral_tbEmployees_tbTravelDetail_employee_ID" />
+        <AssociationConnector Association="FARSIMANModel.FK_Gral_tbEmployees_tbTravels_employee_ID" />
+        <AssociationConnector Association="FARSIMANModel.FK_Gral_tbEmployeesSubsidiaries_tbEmployees_employee_ID" />
+        <AssociationConnector Association="FARSIMANModel.FK_Gral_tbEmployeesSubsidiaries_tbSubsidiaries_subsidiary_ID" />
+        <AssociationConnector Association="FARSIMANModel.FK_Gral_tbPositions_Sec_tbAccess_position_ID" />
+        <AssociationConnector Association="FARSIMANModel.FK_Gral_tbSubsidiaries_tbTravels_subsidiary_ID" />
+        <AssociationConnector Association="FARSIMANModel.FK_Gral_tbTransporters_tbTravels_transporter_ID" />
+        <AssociationConnector Association="FARSIMANModel.FK_Gral_tbTravels_tbTravelDetail_travel_ID" />
+        <AssociationConnector Association="FARSIMANModel.FK_Sec_tbObjects_tbAccess_object_ID" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

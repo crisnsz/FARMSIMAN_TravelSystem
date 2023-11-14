@@ -1,0 +1,102 @@
+﻿@model ERP_GMEDINA.Models.tbTravel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Eliminar Viaje</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>tbTravel</h5>
+                </div>
+                <div class="ibox-content">
+                    <h4 class="text-danger">¿Seguro que quieres borrar esto?</h4>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.departure_Date_and_Time)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.departure_Date_and_Time)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.distance_Kilometers)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.distance_Kilometers)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.total_travel_Cost)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.total_travel_Cost)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbEmployee.employee_Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbEmployee.employee_Name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbSubsidiary.subsidiary_Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbSubsidiary.subsidiary_Name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbTransporter.transporter_Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbTransporter.transporter_Name)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            <fieldset class="box-border">
+                                <div class="col-md-offset-5 col-md-10">
+                                    <input type="submit" value="Eliminar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </fieldset>
+                        </div>
+                       
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

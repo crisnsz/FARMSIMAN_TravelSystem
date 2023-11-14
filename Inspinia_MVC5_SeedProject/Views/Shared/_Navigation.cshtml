@@ -1,0 +1,42 @@
+﻿@using ERP_GMEDINA.Models
+@{
+    Helpers Login = new Helpers();
+    int Sesiones = 0;
+
+
+    List<tbUser> User = Login.getUserInformation();
+
+}
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <div class="logo-element">
+        </div>
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </li>
+            <li class="@Html.IsSelected(action: "Index")">
+                <a href="@Url.Action("Index", "Employee")"><i class="nav-label fa fa-users fa-fw"></i>Empleado<span class="nav-label"></span> </a>
+            </li>
+            <li class="@Html.IsSelected(action: "Index")">
+                <a href="@Url.Action("Index", "Travel")"><i class="nav-label fa fa-bus fa-fw"></i>Viajes<span class="nav-label"></span> </a>
+            </li>
+            <li class="@Html.IsSelected(action: "Index")">
+                <a href="@Url.Action("Index", "TravelHistory")"><i class="nav-label fa fa-bus fa-fw"></i>Viajes History<span class="nav-label"></span> </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+

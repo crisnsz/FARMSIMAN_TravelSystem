@@ -1,0 +1,64 @@
+﻿@model ERP_GMEDINA.Models.tbTravel
+
+
+<div class="ibox-content">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="form-group">
+                @Html.LabelFor(model => model.transporter_ID, "transporter_ID", new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10">
+                    @Html.DropDownList("transporter_ID", (IEnumerable<SelectListItem>)ViewBag.transporter_ID, "Seleccionar", new { @class = "form-control text-box single-line", @required = string.Empty })
+                    <p id="transporter_IDValidation" style="color:red">
+                        <span class="field-validation-valid" data-valmsg-for="transporter_ID" data-valmsg-replace="true"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Fecha de Inicio</label>
+                <div class="col-md-4">
+                    <input type="date" class="form-control" id="InitialDate" name="InitialDate" required>
+                    <p id="InitialDateValidation" style="color:red">
+                        <span class="field-validation-valid" data-valmsg-for="InitialDate" data-valmsg-replace="true"></span>
+                    </p>
+                </div>
+                <label class="control-label col-md-2">Fecha Final</label>
+                <div class="col-md-4">
+                    <input type="date" class="form-control" id="FinalDate" name="FinalDate" required>
+                    <p id="FinalDateValidation" style="color:red">
+                        <span class="field-validation-valid" data-valmsg-for="FinalDate" data-valmsg-replace="true"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @*<button class="btn btn-primary" type="submit" id="">Generar Reporte</button>*@
+                <button type="button" id="GenerateReport" class="btn btn-primary">Generar Reporte</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="title-action">
+                            <div class="box-border">
+                            </div>
+                        </div>
+                        <div class="collapse" id="Generate">
+                            <iframe id="reportIframe" class="full-width-paragraph iframe-container" height="440"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .iframe-container {
+        width: 810px; /* Set the desired width */
+        height: 440px; /* Set the desired height */
+        margin: 0 auto; /* Center horizontally */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>

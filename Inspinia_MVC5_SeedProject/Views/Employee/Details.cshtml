@@ -1,0 +1,166 @@
+﻿@model ERP_GMEDINA.Models.tbEmployee
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalles del Empleado</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles de Empleado</h5>
+                </div>
+                <div class="ibox-content">
+
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.employee_Name)
+                        </dt>
+                        <dd class="form-group">
+                            @Html.DisplayFor(model => model.employee_Name)
+                        </dd>
+
+
+                        <dt class="form-group">
+                            @Html.DisplayNameFor(model => model.employee_Direction)
+                        </dt>
+
+                        <dd class="form-group">
+                            @Html.DisplayFor(model => model.employee_Direction)
+                        </dd>
+
+                        <dt class="form-group">
+                            @Html.DisplayNameFor(model => model.tbPosition.position_Name)
+                        </dt>
+                        <dd class="form-group">
+                            @Html.DisplayFor(model => model.tbPosition.position_Name)
+                        </dd>
+
+                        <dt class="form-group">
+                            @Html.DisplayNameFor(model => model.tbUsers.FirstOrDefault().user_IsAdmin)
+                        </dt>
+
+                        <dd class="form-group">
+                            @Html.DisplayFor(model => model.tbUsers.FirstOrDefault().user_IsAdmin)
+                        </dd>
+
+                        <dt class="form-group">
+                            @Html.DisplayNameFor(model => model.tbUsers.FirstOrDefault().user_IsActive)
+                        </dt>
+                        <dd class="form-group">
+                            @Html.DisplayFor(model => model.tbUsers.FirstOrDefault().user_IsActive)
+                        </dd>
+                    </dl>
+
+                    <div class="wrapper wrapper-content animated fadeInRight">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>Sucursales Asignadas</h5>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="form-horizontal">
+                                                <table id="Added" class="table table table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th hidden style="background-color:#1ab394;color:white">ID</th>
+                                                            <th id="Assign" style="background-color:#1ab394;color:white">Nombre</th>
+                                                            <th style="background-color: #1ab394; color: white">Direccion</th>
+                                                            <th style="background-color:#1ab394;color:white">Distancia(KM)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in (List<ERP_GMEDINA.Models.tbEmployeesSubsidiary>)ViewBag.tbEmployeesSubsidiaries)
+                                                        {
+                                                            <tr data-id="@item.subsidiary_ID">
+                                                                <td hidden>
+                                                                    @Html.DisplayFor(modelItem => item.subsidiary_ID)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.tbSubsidiary.subsidiary_Name)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.tbSubsidiary.subsidiary_Direction)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.employeeSubsidiary_DistanceKM)
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-horizontal">
+                        <fieldset class="box-border">
+                            <div class="col-md-offset-5 col-md-10">
+                                @Html.ActionLink("Editar", "Edit", new { id = Model.employee_ID }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Inicializar las tablas con DataTables
+            tableNoAdded = $('#Added').DataTable({
+                "searching": false,
+                "lengthChange": false,
+
+                "order": [[0, 'asc']],
+                "columnDefs": [{
+                    "targets": [0],
+                    "visible": false
+                }],
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                    },
+                    "sEmptyTable": "No hay registros",
+                    "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                    "sSearch": "Buscar",
+                    "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+                }
+            });
+        })
+
+    </script>
+}
+

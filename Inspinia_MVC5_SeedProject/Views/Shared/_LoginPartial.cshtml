@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNet.Identity
+@using ERP_GMEDINA.Models
+@{
+    string UserName = "";
+    int UserId = 0;
+    Helpers Login = new Helpers();
+    List<tbUser> Users = Login.getUserInformation();
+    foreach (tbUser user in Users)
+    {
+        UserName = user.tbEmployee.employee_Name;
+        UserId = user.user_ID;
+    }
+}
+
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + @UserName + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-top-links navbar-right">
+        <li >
+            <h4>@UserName</h4>
+        </li>
+        <li>
+            @Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </li>
+    </ul>
+}
