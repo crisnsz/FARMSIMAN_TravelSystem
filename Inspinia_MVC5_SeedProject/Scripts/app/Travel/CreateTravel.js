@@ -121,7 +121,7 @@ dropdownTransporter_ID.addEventListener("change", async function () {
         let fee = res.transporter_Fee;
 
         if (tableEmployessAdded.rows().count() > 0) {
-            totalCostField.value = distance.value * fee
+            totalCostField.value = parseFloat((distance.value * fee).toFixed(2));
         }
 
         if (checkTables()) {
@@ -143,8 +143,8 @@ dropdownTransporter_ID.addEventListener("change", async function () {
 });
 
 function cleanValue() {
-    transporterFee.value = 0;
-    totalCostField.value = 0;
+    transporterFee.value = 0.00;
+    totalCostField.value = 0.00;
 }
 
 function validate_Form() {
@@ -369,7 +369,7 @@ function updateTotalCost(operation, km) {
 
     if (isNaN(transporterfee) && isNaN(km)) {
 
-        totalCostField.value = ''; // Clear the field if the inputs are not valid numbers
+        totalCostField.value = 0.00; // Clear the field if the inputs are not valid numbers
         return;
     }
 
@@ -377,14 +377,14 @@ function updateTotalCost(operation, km) {
     let newTotalCost = transporterfee * km;
 
     if (totalCostField.value === null || totalCostField.value === undefined || totalCostField.value.trim() === '') {
-        totalCostField.value = newTotalCost;
+        totalCostField.value = parseFloat(newTotalCost.toFixed(2)) ;
         return;
     }
 
     if (operation === add) {
-        totalCostField.value = parseFloat(totalCostField.value) + newTotalCost;
+        totalCostField.value = parseFloat((parseFloat(totalCostField.value) + newTotalCost).toFixed(2));
     } else if (operation === subtract) {
-        totalCostField.value = parseFloat(totalCostField.value) - newTotalCost;
+        totalCostField.value = parseFloat((parseFloat(totalCostField.value) - newTotalCost).toFixed(2));
     }
 
 
@@ -431,6 +431,8 @@ $("#EmployessAvalaible tbody").on("click", "input#btnAddEmployee", async functio
     let Employee_ID = data[0];
     let Kilometers = (data[3])
 
+    console.log(data)
+
     let futureKM = parseFloat(Kilometers) + parseFloat(distance.value)
 
     if (futureKM > 100) {
@@ -472,14 +474,14 @@ $("#EmployessAvalaible tbody").on("click", "input#btnAddEmployee", async functio
 
 })
 
-async function addEmployeeToTravel(id) {
+async function addEmployeeToTravel(Employee) {
     try {
         const response = await fetch("/Travel/AddEmployeeTravel", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
             },
-            body: JSON.stringify({ Employee: id }),
+            body: JSON.stringify({ Employee, travelDetail_ID: 0 }),
         });
 
         if (!response.ok) {
@@ -497,6 +499,8 @@ async function addEmployeeToTravel(id) {
 
 $("#EmployessAdded tbody").on("click", "input#btnDelEmployee", async function () {
     try {
+        
+
         let data = tableEmployessAdded.row($(this).parents("tr")).data();
         let employeeID = data[0];
         let kilometers = data[3];
@@ -532,14 +536,14 @@ $("#EmployessAdded tbody").on("click", "input#btnDelEmployee", async function ()
 });
 
 
-async function removeEmployeeToTravel(id) {
+async function removeEmployeeToTravel(Employee) {
     try {
         const response = await fetch("/Travel/RemoveEmployeeTravel", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
             },
-            body: JSON.stringify({ Employee: id }),
+            body: JSON.stringify({ Employee, travelDetail_ID: 0 }),
         });
 
         if (!response.ok) {

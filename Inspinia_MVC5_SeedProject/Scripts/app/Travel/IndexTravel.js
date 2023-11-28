@@ -1,6 +1,7 @@
 ﻿
 
 
+let DataTableTravels;
 
 const generateReportButton = document.getElementById("GenerateReport");
 const transporterIDInput = document.getElementById("transporter_ID");
@@ -11,8 +12,47 @@ const initialDateInput = document.getElementById("InitialDate");
 const finalDateInput = document.getElementById("FinalDate");
 
 
+const ModalGenReporte = document.getElementById("GenReporte");
+
+
 
 document.addEventListener("DOMContentLoaded", setInitialAndFinalDateFields);
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    DataTableTravels = new DataTable('#DataTable', {
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sZeroRecords": "No se encontraron resultados",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sEmptyTable": "No hay registros",
+            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+        },
+
+    });
+
+    setInitialAndFinalDateFields();
+});
+
+//ModalGenReporte.addEventListener("click", async function () {
+
+
+
+//    $('#ModalGenReporte').modal('show');
+
+
+//    const myModal = document.getElementById('ModalGenReporte')
+    
+//});
+
 
 function setInitialAndFinalDateFields() {
     const { formattedFirstDay, formattedLastDay } = getFirstAndLastDayOfCurrentMonth();
@@ -35,6 +75,15 @@ function getFirstAndLastDayOfCurrentMonth() {
 
 generateReportButton.addEventListener("click", async function () {
     try {
+
+        console.log(DataTableTravels.rows().count())
+
+        if (DataTableTravels.rows().count() <= 0) {
+            alert("No hay registros");
+            return;
+        }
+
+
         const transporterID = transporterIDInput.value;
         const initialDate = initialDateInput.value;
         const finalDate = finalDateInput.value;

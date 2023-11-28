@@ -2,6 +2,7 @@
 
 let tableAdded;
 
+const ModalGenReporte = new bootstrap.Modal('#modalKM');
 
 document.addEventListener("DOMContentLoaded", function () {
     tableNoAdded = new DataTable('#NoAdded', {
@@ -59,9 +60,7 @@ $("#NoAdded tbody").on("click", "input#AddSubsidiary", function () {
     let data = tableNoAdded.row($(this).parents("tr")).data();
     let subsidiary_ID = data[0];
 
-    // Utiliza el ID del modal para abrirlo
-    $('#modalKM').modal('show');
-
+    ModalGenReporte.show();
 
     document.getElementById("subsidiary_ID").value = subsidiary_ID;
 
@@ -94,7 +93,7 @@ $("#btnAddSubsidiary").on("click", function () {
         .then(result => {
             console.log(result); // Data fetched from https://example.com/api/data
 
-            $('#modalKM').modal('hide');
+            ModalGenReporte.hide();
 
             data[4] = '<input name="id02" type="button" id="DelSubsidiary" value="&#9668; Quitar &nbsp;&nbsp;" class="btn btn-primary btn-xs">'
 
@@ -139,7 +138,7 @@ $("#NoAdded1 tbody").on("click", "input#AddSubsidiary", function () {
             console.log(result); // Data fetched from https://example.com/api/data
 
             //Cambiar id de #AddSubsidiary a #DelSubsidiary
-            data[3] = '<input name="id02" type="button" id="DelSubsidiary" value="&#9668; Quitar &nbsp;&nbsp;" class="btn btn-primary btn-xs">'
+            data[3] = '<input name="id02" type="button" id="DelSubsidiary" value="&#9668; Quitar &nbsp;&nbsp;" class="btn btn-primary btn-sm">'
 
             // Mueve la fila a tabla2
             tableAdded.row.add(data).draw();
@@ -189,7 +188,7 @@ $("#Added tbody").on("click", "input#DelSubsidiary", function () {
             console.log(result); // Data fetched from https://example.com/api/data
 
             //Cambiar id de #DelSubsidiary a #AddSubsidiary
-            data[3] = '<input name="id02" type="button" id="AddSubsidiary" value="Agregar &#9658" class="btn btn-primary btn-xs">'
+            data[3] = '<input name="id02" type="button" id="AddSubsidiary" value="Agregar &#9658" class="btn btn-primary btn-sm">'
 
             // Mueve la fila a tabla2
             tableNoAdded.row.add(data).draw();

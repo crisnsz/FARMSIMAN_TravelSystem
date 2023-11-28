@@ -30,77 +30,76 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal">
+                        <div class="form-horizontal ms-4">
                             @Html.ValidationSummary(true)
 
                             @Html.HiddenFor(model => model.employee_ID, new { Value = ViewBag.employee_ID })
-
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.transporter_ID, "transporter_ID", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-5">
+                            <div class="row row-cols-auto">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        @Html.LabelFor(model => model.transporter_ID, "transporter_ID", new { @class = "form-label col-md-2", @for = "transporter_ID" })
                                         @Html.DropDownList("transporter_ID", (IEnumerable<SelectListItem>)ViewBag.transporter_ID, "Seleccionar", new { @class = "form-control text-box single-line", @required = string.Empty })
                                         @Html.ValidationMessageFor(model => model.transporter_ID)
                                     </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="mb-3">
+                                        <label class="form-label col-md-1" for="transporter_fee">Tarifa</label>
+                                        <input type="number" id="transporter_fee" name="transporter_fee" class="form-control text-box single-line" readonly disabled />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        @Html.LabelFor(model => model.employee_ID, "employee_ID", new { @class = "form-label col-md-2", @for = "registered_By" })
+                                        @Html.TextBox("registered_By", (String)ViewBag.employee_Name, new { @class = "form-control", @autocomplete = "off", @readonly = "readonly", @disabled = "disabled" })
 
-                                    <label class="control-label col-md-1">Tarifa</label>
-                                    <div class="col-md-4">
-                                        <input type="number" id="transporter_fee" name="transporter_fee" class="form-control text-box single-line" readonly />
+                                        @Html.ValidationMessageFor(model => model.employee_ID)
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.subsidiary_ID, "transporter_ID", new { @class = "control-label col-md-2" })
-
-                                <div class="col-md-10">
-                                    @Html.DropDownList("subsidiary_ID", (IEnumerable<SelectListItem>)ViewBag.subsidiary_ID, "Seleccionar", new { @class = "form-control text-box single-line", @required = string.Empty, @disabled = string.Empty })
-
-                                    @Html.ValidationMessageFor(model => model.subsidiary_ID)
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="mb-3">
+                                        @Html.LabelFor(model => model.subsidiary_ID, "subsidiary_ID", new { @class = "form-label col-md-2", @for = "subsidiary_ID" })
+                                        @Html.DropDownList("subsidiary_ID", (IEnumerable<SelectListItem>)ViewBag.subsidiary_ID, "Seleccionar", new { @class = "form-control text-box single-line", @required = string.Empty })
+                                        @Html.ValidationMessageFor(model => model.subsidiary_ID)
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Direccion de la Subsidiaria</label>
-
-                                <div class="col-md-10">
-                                    <input type="text" id="subsidiary_Address" name="subsidiary_Address" class="form-control text-box single-line" readonly disabled>
-
-
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label col-md-5" for="subsidiary_Address">Direccion de la Subsidiaria</label>
+                                        <input type="text" id="subsidiary_Address" name="subsidiary_Address" class="form-control text-box single-line" readonly disabled>
+                                    </div>
                                 </div>
                             </div>
 
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.employee_ID, "employee_ID", new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.TextBox("registered_By", (String)ViewBag.employee_Name, new { @class = "form-control", @autocomplete = "off", @readonly = "readonly", @disabled = "disabled" })
 
-                                    @Html.ValidationMessageFor(model => model.employee_ID)
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        @Html.LabelFor(model => model.departure_Date_and_Time, new { @class = "form-label col-md-5", @for = "departure_Date_and_Time" })
+                                        @Html.EditorFor(model => model.departure_Date_and_Time, new { htmlAttributes = new { @type = "datetime-local" } })
+                                        @Html.ValidationMessageFor(model => model.departure_Date_and_Time)
+                                    </div>
                                 </div>
-                            </div>
-
-
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.distance_Kilometers, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        @Html.LabelFor(model => model.distance_Kilometers, new { @class = "form-label col-md-5", @for = "distance_Kilometers" })
                                         @Html.TextBoxFor(model => model.distance_Kilometers, new { @class = "form-control", @autocomplete = "off", @readonly = "readonly" })
                                         @Html.ValidationMessageFor(model => model.distance_Kilometers)
                                     </div>
+                                </div>
 
-                                    @Html.LabelFor(model => model.total_travel_Cost, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
 
-                                    <div class="col-md-4">
+                                    <div class="mb-3">
+                                        @Html.LabelFor(model => model.total_travel_Cost, new { @class = "form-label col-md-5", @for = "total_travel_Cost" })
                                         @Html.TextBoxFor(model => model.total_travel_Cost, new { @class = "form-control", @autocomplete = "off", @readonly = "readonly" })
 
                                         @Html.ValidationMessageFor(model => model.total_travel_Cost)
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.departure_Date_and_Time, new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.departure_Date_and_Time, new { htmlAttributes = new { @type = "datetime-local" } })
-                                    @Html.ValidationMessageFor(model => model.departure_Date_and_Time)
                                 </div>
                             </div>
 
@@ -164,24 +163,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-horizontal">
-                                <fieldset class="box-border">
-                                    @*botones*@
-                                    <div class="col-md-offset-5 col-md-10">
-                                        <input type="submit" value="Registrar" class="btn btn-primary" />
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 offset-md-3">
+                                    <div class="form-horizontal">
+                                        <fieldset class="box-border">
+                                            @* botones *@
+                                            <div class="text-center">
+                                                <input type="submit" value="Registrar" class="btn btn-primary" />
+                                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                            </div>
+                                        </fieldset>
                                     </div>
-                                </fieldset>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-
                                 </div>
                             </div>
                         </div>
                     }
-
                 </div>
             </div>
         </div>

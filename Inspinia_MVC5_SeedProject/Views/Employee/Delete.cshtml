@@ -47,10 +47,20 @@
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
-
-                        <div class="form-actions no-color">
-                            <input type="submit" value="Eliminar" class="btn btn-danger" />
-                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 offset-md-3">
+                                    <div class="form-horizontal">
+                                        <fieldset class="box-border">
+                                            @* botones *@
+                                            <div class="text-center">
+                                                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     }
 

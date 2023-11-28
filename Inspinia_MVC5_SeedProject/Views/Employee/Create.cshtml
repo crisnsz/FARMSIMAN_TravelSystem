@@ -40,7 +40,7 @@
                         <div class="form-horizontal">
                             @Html.Partial("_ModalSolicitarKM")
                         </div>
-                        <div class="form-horizontal">
+                        <div class="form-horizontal ms-4">
                             @Html.ValidationSummary(true)
 
                             <div class="mb-3">
@@ -54,13 +54,13 @@
                             <div class="mb-3">
                                 @Html.LabelFor(model => model.employee_Direction, new { @class = "form-label col-md-2", @for = "employee_Direction" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.employee_Direction, new { @class = "form-control"})
+                                    @Html.EditorFor(model => model.employee_Direction, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.employee_Direction)
                                 </div>
                             </div>
                             <div class="mb-3">
                                 @*@Html.LabelFor(tbPositions => tbPositions.tbEmployeesPositions, new { @class = "control-label col-md-2" })*@
-                                <label class="form-label col-md-2" for="position_ID" >Puesto o Cargo</label>
+                                <label class="form-label col-md-2" for="position_ID">Puesto o Cargo</label>
                                 <div class="col-md-10">
                                     @Html.DropDownList("position_ID", (SelectList)ViewBag.Positions, new { @class = "text-box single-line", @required = string.Empty })
                                 </div>
@@ -143,15 +143,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-horizontal">
-                                <fieldset class="box-border">
-                                    @*botones*@
-                                    <div class="col-md-offset-5 col-md-10">
-                                        <input type="submit" value="Registrar" class="btn btn-primary" />
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 offset-md-3">
+                                        <div class="form-horizontal">
+                                            <fieldset class="box-border">
+                                                @* botones *@
+                                                <div class="text-center">
+                                                    <input type="submit" value="Registrar" class="btn btn-primary" />
+                                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                                </div>
+                                            </fieldset>
+                                        </div>
                                     </div>
-                                </fieldset>
+                                </div>
                             </div>
+
                         </div>
                     }
                 </div>
@@ -161,6 +168,8 @@
 </div>
 
 @section scripts{
+    @*<script src="~/Scripts/app/Employees/CreateEmployee.js"></script>*@
+    <script src="~/Scripts/app/Utils/Utilities.js"></script>
     <script src="~/Scripts/app/Employees/CreateEmployee.js"></script>
 
 }

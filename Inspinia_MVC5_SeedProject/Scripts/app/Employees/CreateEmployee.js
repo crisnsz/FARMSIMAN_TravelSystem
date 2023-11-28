@@ -1,7 +1,14 @@
-let tableNoAdded;
+//import { arrayToJsonUser } from '../Utils/Utilities';
 
+
+let tableNoAdded;
 let tableAdded;
 
+const ModalGenReporte = new bootstrap.Modal('#modalKM');
+
+
+const MAX_KM = 50;
+const MIN_KM = 1;
 
 document.addEventListener("DOMContentLoaded", function () {
     tableNoAdded = new DataTable('#NoAdded', {
@@ -51,176 +58,184 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+document.getElementById("NoAdded").querySelector("tbody").addEventListener("click", function (event) {
+    const target = event.target;
 
-$("#NoAdded tbody").on("click", "input#AddSubsidiary", function () {
+    if (target.tagName === "INPUT" && target.id === "AddSubsidiary") {
+        
 
-    let data = tableNoAdded.row($(this).parents("tr")).data();
-    let subsidiary_ID = data[0];
+        let data = tableNoAdded.row(target.closest("tr")).data();
+        let subsidiary_ID = data[0];
 
-    // Utiliza el ID del modal para abrirlo
-    $('#modalKM').modal('show');
+        console.log(data);
 
+        ModalGenReporte.show();
 
-    document.getElementById("subsidiary_ID").value = subsidiary_ID;
+        const myModal = document.getElementById('modalKM');
+        const myInput = document.getElementById('km');
 
-    document.getElementById("dataButton").value = data;
-
-})
-
-$("#btnAddSubsidiary").on("click", function () {
-
-
-
-    let subsidiary_ID = document.getElementById("subsidiary_ID").value;
-
-    let data = document.getElementById("dataButton").value.split(',');;
-
-    let KMVal = document.getElementById("km").value;
-
-    if (KMVal == null || KMVal == "" || KMVal == undefined) {
-        return;
-    }
-
-    if (KMVal < 1 || KMVal > 50) {
-        alert("Ingrese un numero mayor que 0 y menor que 50");
-        return;
-    }
-
-    console.log(subsidiary_ID, KMVal);
-
-    SyncToControllerAddPromise(subsidiary_ID, KMVal)
-        .then(result => {
-            console.log(result); // Data fetched from https://example.com/api/data
-
-            $('#modalKM').modal('hide');
-
-            data[4] = '<input name="id02" type="button" id="DelSubsidiary" value="&#9668; Quitar &nbsp;&nbsp;" class="btn btn-primary btn-xs">'
-
-            let newRowData = [data[0], data[1], data[2], KMVal, data[4]];
-            //Cambiar id de #AddSubsidiary a #DelSubsidiary
-
-            // Mueve la fila a tabla2
-            tableAdded.row.add(newRowData).draw();
-
-
-
-
-            // Elimina la fila de tabla1
-            tableNoAdded.row(`[data-id="${data[0]}"]`).remove().draw();
-
-            //Clean Data
-            document.getElementById("subsidiary_ID").value = "";
-
-            document.getElementById("dataButton").value = "";
-
-            document.getElementById("km").value = "";
-        })
-        .catch(error => {
-            console.error(error); // Request timed out
+        myModal.addEventListener('shown.bs.modal', () => {
+            myInput.focus();
         });
 
-
-})
-
-
-
-
-$("#NoAdded1 tbody").on("click", "input#AddSubsidiary", function () {
-    let data = tableNoAdded.row($(this).parents("tr")).data();
-    let subsidiary_ID = data[0];
-    let subsidiary_Name = data[1];
-
-
-
-    SyncToControllerAddPromise(subsidiary_ID, subsidiary_Name)
-        .then(response => {
-            console.log(response); // Data fetched from https://example.com/api/data
-
-            //Cambiar id de #AddSubsidiary a #DelSubsidiary
-            data[3] = '<input name="id02" type="button" id="DelSubsidiary" value="&#9668; Quitar &nbsp;&nbsp;" class="btn btn-primary btn-xs">'
-
-            // Mueve la fila a tabla2
-            tableAdded.row.add(data).draw();
-
-            // Elimina la fila de tabla1
-            tableNoAdded.row($(this).parents("tr")).remove().draw();
-        })
-        .catch(error => {
-            console.error(error); // Request timed out
-        });
+        document.getElementById("subsidiary_ID").value = subsidiary_ID;
+        document.getElementById("dataButton").value = data;
+    }
 });
 
 
-function SyncToControllerAddPromise(id, km) {
-    return new Promise((resolve, reject) => {
-        let Subsidiary = {
+
+document.getElementById("btnAddSubsidiary").addEventListener("click", async function () {
+    try {
+        let subsidiary_ID = document.getElementById("subsidiary_ID").value;
+        let data = document.getElementById("dataButton").value.split(',');;
+        let KMVal = document.getElementById("km").value;
+
+        if (!KMVal || KMVal < MIN_KM || KMVal > MAX_KM) {
+            alert("Ingrese un número mayor que 0 y menor que 50");
+            return;
+        }
+
+        const res = await syncToControllerAddPromise(subsidiary_ID, KMVal);
+
+        console.log(res); // Data fetched from https://example.com/api/data
+
+        if (!res || res.error) {
+            // Handle null response or specific error case
+            console.error(res ? res.errorMessage : "Response is null");
+            return;
+        }
+
+        ModalGenReporte.hide();
+
+        data[4] = '<input name="id02" type="button" id="DelSubsidiary" value="&#9668; Quitar &nbsp;&nbsp;" class="btn btn-primary btn-sm">'
+
+        let newRowData = [data[0], data[1], data[2], KMVal, data[4]];
+        //Cambiar id de #AddSubsidiary a #DelSubsidiary
+
+        // Mueve la fila a tabla2
+        tableAdded.row.add(newRowData).draw();
+
+        // Elimina la fila de tabla1
+        tableNoAdded.row(`[data-id="${data[0]}"]`).remove().draw();
+
+        //Clean Data
+        document.getElementById("subsidiary_ID").value = "";
+
+        document.getElementById("dataButton").value = "";
+
+        document.getElementById("km").value = "";
+    } catch (error) {
+        // Improved error handling
+        throw new Error("Request failed: " + error.message);
+    }
+})
+
+
+function handleAddSubsidiary(data, tableFrom, tableTo, kmId, btnId) {
+    // Your common logic for adding a subsidiary
+}
+
+async function handleDelSubsidiary(data, row) {
+
+    const jsonData = arrayToJsonUser(data);
+
+    console.log(jsonData);
+
+
+    const subsidiary_ID = jsonData.subsidiary_ID;
+    const subsidiary_Name = jsonData.subsidiary_Name;
+
+    const res = await syncToControllerRemovePromise(subsidiary_ID);
+
+    console.log(res); // Data fetched from https://example.com/api/data
+
+    if (!res || res.error) {
+        // Handle null response or specific error case
+        console.error(res ? res.errorMessage : "Response is null");
+        return;
+    }
+
+    // Change id from #DelSubsidiary to #AddSubsidiary
+    jsonData.subsidiary_Button = '<input name="id02" type="button" id="AddSubsidiary" value="Agregar &#9658" class="btn btn-primary btn-sm">'
+    data[3] = jsonData.subsidiary_Button;
+
+    // Move the row to table2
+    tableNoAdded.row.add(data).draw();
+
+    // Remove the row from table1
+    tableAdded.row(row).remove().draw();
+    tableNoAdded.order([0, 'asc']).draw();
+}
+
+
+
+async function syncToControllerAddPromise(id, km) {
+    try {
+        const subsidiary = {
             subsidiary_ID: id,
             employeeSubsidiary_DistanceKM: km,
         };
 
-        $.ajax({
-            url: "/Employee/AddSubsidiary",
+        const response = await fetch("/Employee/AddSubsidiary", {
             method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ tbEmployeesSubsidiary: Subsidiary }),
-        })
-            .done(function (res) {
-                resolve(res)
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                // Error handling
-                reject(new Error("Request timed out"));
-            });
-    });
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify({ tbEmployeesSubsidiary: subsidiary }),
+        });
+
+        if (!response.ok) {
+            throw new Error("Request failed with status: " + response.status);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        // Improved error handling
+        throw new Error("Request failed: " + error.message);
+    }
 }
 
 
-$("#Added tbody").on("click", "input#DelSubsidiary", function () {
-    let data = tableAdded.row($(this).parents("tr")).data();
-    let subsidiary_ID = data[0];
-    let subsidiary_Name = data[1];
+document.getElementById("Added").querySelector("tbody").addEventListener("click", async function (event) {
+    const target = event.target;
 
+    if (target.tagName === "INPUT" && target.id === "DelSubsidiary") {
+        try {
+            const row = target.closest("tr");
+            const data = tableAdded.row(row).data();
+            handleDelSubsidiary(data, row)
 
-    SyncToControllerRemovePromise(subsidiary_ID, subsidiary_Name)
-        .then(result => {
-            console.log(result); // Data fetched from https://example.com/api/data
-
-            //Cambiar id de #DelSubsidiary a #AddSubsidiary
-            data[3] = '<input name="id02" type="button" id="AddSubsidiary" value="Agregar &#9658" class="btn btn-primary btn-xs">'
-
-            // Mueve la fila a tabla2
-            tableNoAdded.row.add(data).draw();
-
-            // Elimina la fila de tabla1
-            tableAdded.row($(this).parents("tr")).remove().draw();
-        })
-        .catch(error => {
-            console.error(error); // Request timed out
-        });
-    tableNoAdded.order([0, 'asc']).draw();
+        } catch (error) {
+            console.error(error); // Request failed
+        }
+    }
 });
 
-function SyncToControllerRemovePromise(id, name) {
-    return new Promise((resolve, reject) => {
-        let Subsidiary = {
+async function syncToControllerRemovePromise(id) {
+    try {
+        const subsidiary = {
             subsidiary_ID: id
         };
 
-        $.ajax({
-            url: "/Employee/RemoveSubsidiary",
+        const response = await fetch("/Employee/RemoveSubsidiary", {
             method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ tbEmployeesSubsidiary: Subsidiary }),
-        })
-            .done(function (data) {
-                resolve(data)
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                // Error handling
-                reject(new Error("Request timed out"));
-            });
-    });
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify({ tbEmployeesSubsidiary: subsidiary }),
+        });
 
+        if (!response.ok) {
+            throw new Error("Request failed with status: " + response.status);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        // Improved error handling
+        throw new Error("Request failed: " + error.message);
+    }
 }
+

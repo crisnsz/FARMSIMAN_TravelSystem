@@ -1,39 +1,56 @@
 ﻿@model FARSIMAN.Models.tbTravel
 
 
-<div class="ibox-content">
-    <div class="form-horizontal">
-        <div class="form-group">
-            <div class="form-group">
-                @Html.LabelFor(model => model.transporter_ID, "transporter_ID", new { @class = "control-label col-md-2" })
 
-                <div class="col-md-10">
-                    @Html.DropDownList("transporter_ID", (IEnumerable<SelectListItem>)ViewBag.transporter_ID, "Seleccionar", new { @class = "form-control text-box single-line", @required = string.Empty })
-                    <p id="transporter_IDValidation" style="color:red">
-                        <span class="field-validation-valid" data-valmsg-for="transporter_ID" data-valmsg-replace="true"></span>
-                    </p>
-                </div>
+<div class="modal fade modal-lg" id="ModalGenReporte" tabindex="-1" aria-labelledby="ModalGenReporte" aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Reporte de Viajes por Transportista</h4>
             </div>
-            <div class="form-group">
-                <label class="control-label col-md-2">Fecha de Inicio</label>
-                <div class="col-md-4">
-                    <input type="date" class="form-control" id="InitialDate" name="InitialDate" required>
-                    <p id="InitialDateValidation" style="color:red">
-                        <span class="field-validation-valid" data-valmsg-for="InitialDate" data-valmsg-replace="true"></span>
-                    </p>
-                </div>
-                <label class="control-label col-md-2">Fecha Final</label>
-                <div class="col-md-4">
-                    <input type="date" class="form-control" id="FinalDate" name="FinalDate" required>
-                    <p id="FinalDateValidation" style="color:red">
-                        <span class="field-validation-valid" data-valmsg-for="FinalDate" data-valmsg-replace="true"></span>
-                    </p>
+            <div id="GenerarReporte" class="modal-body">
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.transporter_ID, "transporter_ID", new { @class = "control-label col-md-2" })
+
+                                <div class="col-md-10">
+                                    @Html.DropDownList("transporter_ID", (IEnumerable<SelectListItem>)ViewBag.transporter_ID, "Seleccionar", new { @class = "form-control text-box single-line", @required = string.Empty })
+                                    <p id="transporter_IDValidation" style="color:red">
+                                        <span class="field-validation-valid" data-valmsg-for="transporter_ID" data-valmsg-replace="true"></span>
+                                    </p>
+                                </div>
+                            </div>
+                           
+                            <div class="input-group-lg">
+                                <div class="mb-auto">
+                                    <label for="InitialDate" class="form-label">Fecha de Inicio</label>
+                                    <input type="date" class="form-control" id="InitialDate" name="InitialDate" required>
+                                    <p id="InitialDateValidation" style="color:red">
+                                        <span class="field-validation-valid" data-valmsg-for="InitialDate" data-valmsg-replace="true"></span>
+                                    </p>
+                                </div>
+                                <div class="mb-auto">
+                                    <label for="FinalDate" class="form-label">Fecha Final</label>
+                                    <input type="date" class="form-control" id="FinalDate" name="FinalDate" required>
+                                    <p id="FinalDateValidation" style="color:red">
+                                        <span class="field-validation-valid" data-valmsg-for="FinalDate" data-valmsg-replace="true"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 @*<button class="btn btn-primary" type="submit" id="">Generar Reporte</button>*@
                 <button type="button" id="GenerateReport" class="btn btn-primary">Generar Reporte</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -51,7 +68,6 @@
         </div>
     </div>
 </div>
-
 <style>
     .iframe-container {
         width: 810px; /* Set the desired width */

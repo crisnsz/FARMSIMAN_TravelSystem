@@ -27,7 +27,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Viajes</h5>
                     <div class="ibox-tools">
-                        <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalGenReporte" value="Generar Reporte" />
+                        <input type="button" class="btn btn-primary" id="GenReporte" data-bs-toggle="modal" data-bs-target="#ModalGenReporte" value="Generar Reporte" />
                         @Html.ActionLink("Registrar Viaje", "Create", null, new { @class = "btn btn-primary " })
                     </div>
                 </div>
@@ -95,25 +95,10 @@
             </div>
         </div>
     </div>
-
-
 </div>
 
-
-<div class="modal fade" id="ModalGenReporte" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Reporte de Viajes por Transportista</h4>
-            </div>
-            <div id="GenerarReporte" class="modal-body">
-                @Html.Partial("_ReportTravel", new FARSIMAN.Models.tbTravel())
-            </div>
-        </div>
-    </div>
+<div class="form-horizontal">
+    @Html.Partial("_ReportTravel", new FARSIMAN.Models.tbTravel())
 </div>
 
 <style>
@@ -130,26 +115,9 @@
     <script src="~/Scripts/app/Travel/IndexTravel.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $('#DataTable').DataTable({
-                "searching": true,
-                "oLanguage": {
-                    "oPaginate": {
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior",
-                    },
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sEmptyTable": "No hay registros",
-                    "sInfoEmpty": "Mostrando 0 de 0 Entradas",
-                    "sSearch": "Buscar",
-                    "sLengthMenu": "Mostrar _MENU_Registros Por Página",
-                    "sInfo": "Mostrando _START_ a _END_ Entradas"
-                },
 
-            });
-
-        });
+        
+        
     </script>
 }
 
